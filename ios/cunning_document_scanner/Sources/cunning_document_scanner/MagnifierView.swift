@@ -48,16 +48,32 @@ class MagnifierView: UIView {
         borderPath.lineWidth = 3
         borderPath.stroke()
         
-        // Draw crosshair in the center
-        UIColor.systemBlue.setStroke()
-        let crosshair = UIBezierPath()
-        let midX = rect.midX
-        let midY = rect.midY
-        crosshair.move(to: CGPoint(x: midX - 8, y: midY))
-        crosshair.addLine(to: CGPoint(x: midX + 8, y: midY))
-        crosshair.move(to: CGPoint(x: midX, y: midY - 8))
-        crosshair.addLine(to: CGPoint(x: midX, y: midY + 8))
-        crosshair.lineWidth = 1.5
-        crosshair.stroke()
+        // Draw a bold center marker for the point being dragged.
+        // The snapshot is taken with the crop overlay hidden, so no
+        // handle is visible inside the lens, and the previous thin
+        // blue crosshair was too faint against a document image to
+        // show which corner is being moved. A solid dot with a white
+        // ring marks the exact drag point and echoes the look of the
+        // corner handles themselves (blue fill, white border).
+        let markerCenter = CGPoint(x: rect.midX, y: rect.midY)
+        let ringPath = UIBezierPath(
+            arcCenter: markerCenter,
+            radius: 7,
+            startAngle: 0,
+            endAngle: .pi * 2,
+            clockwise: true
+        )
+        UIColor.white.setStroke()
+        ringPath.lineWidth = 2
+        ringPath.stroke()
+        let dotPath = UIBezierPath(
+            arcCenter: markerCenter,
+            radius: 5,
+            startAngle: 0,
+            endAngle: .pi * 2,
+            clockwise: true
+        )
+        UIColor.systemBlue.setFill()
+        dotPath.fill()
     }
 }

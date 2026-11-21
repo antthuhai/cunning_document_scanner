@@ -1,5 +1,14 @@
 # Cunning Document Scanner
 
+> **Fork notes (antthuhai fork, for OpenScan):** this fork is the upstream
+> `vicajilau/cunning_document_scanner` 3.1.0 plus one patch: the iOS crop
+> magnifier (`MagnifierView.swift`) now draws a bold center marker (solid
+> blue dot with a white ring) for the point being dragged. The upstream
+> magnifier showed only a thin blue crosshair, and the snapshot hides the
+> crop overlay, so nothing inside the lens showed which corner was being
+> moved. The marker echoes the corner handles (blue fill, white border).
+> Everything else is unchanged from upstream 3.1.0.
+
 ### In Loving Memory of Marcel Pater 🌟
 
 > *“A new star has lit up in the sky... one that will shine brightly and guide us forever.”*
